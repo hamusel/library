@@ -11,6 +11,10 @@ function Book(title, author, pagesAmount, read) {
     }
 }
 
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+};
+
 const display = document.getElementById("display")
 
 
@@ -35,14 +39,27 @@ function displayBooks() {
         bookItem.classList.add("card");
         booksList.appendChild(bookItem);
 
+        const buttonDiv = document.createElement("div");
+        buttonDiv.classList.add("buttonContainer");
+        bookItem.appendChild(buttonDiv);
         const removeButton = document.createElement("button");
         removeButton.classList.add("removeButton");
         removeButton.textContent = "remove";
-        bookItem.appendChild(removeButton);
+        buttonDiv.appendChild(removeButton);
         removeButton.addEventListener("click", () => {
             myLibrary.splice(index, 1);
             displayBooks();
         })
+
+        const readButton = document.createElement("button");
+        readButton.classList.add("readButton");
+        readButton.textContent = book.read ? "Not read" : "Read";
+        readButton.addEventListener("click", () => {
+            book.toggleRead();
+            bookItem.textContent = book.info();
+            displayBooks();
+        })
+        buttonDiv.appendChild(readButton);
     })
 
 
