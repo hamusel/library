@@ -70,6 +70,7 @@ const dialog = document.querySelector("dialog");
 const button = document.getElementById("add");
 
 button.addEventListener("click", () => {
+    dialog.style.visibility = "visible";
     dialog.showModal();
 });
 
@@ -92,6 +93,7 @@ addButton.addEventListener("click", (event) => {
 
 const closeButton = document.getElementById("close");
 closeButton.addEventListener("click", () => {
+    dialog.style.visibility = "hidden";
     dialog.close();
 })
 
