@@ -21,28 +21,36 @@ function addBookToLibrary(book) {
 
 function displayBooks() {
 
-    const booksList = document.createElement("div");
-    booksList.classList.add("books-list");
-    display.appendChild(booksList);
+
+    const booksList = document.getElementById("books");
+
+    while (booksList.firstChild) {
+        booksList.removeChild(booksList.firstChild);
+    }
 
 
-    myLibrary.forEach((book) => {
+    myLibrary.forEach((book, index) => {
         const bookItem = document.createElement("div");
-        bookItem.classList.add("book-item");
         bookItem.textContent = book.info();
+        bookItem.classList.add("card");
         booksList.appendChild(bookItem);
+
+        const removeButton = document.createElement("button");
+        removeButton.classList.add("removeButton");
+        removeButton.textContent = "remove";
+        bookItem.appendChild(removeButton);
+        removeButton.addEventListener("click", () => {
+            myLibrary.splice(index, 1);
+            displayBooks();
+        })
     })
 
-    display.appendChild(booksList);
+
 }
 
-function addBook(title, author, pagesAmount) {
-    return new Book(title, author, pagesAmount, false);
-}
 
 const dialog = document.querySelector("dialog");
 const button = document.getElementById("add");
-const form = document.querySelector("form");
 
 button.addEventListener("click", () => {
     dialog.showModal();
@@ -54,12 +62,15 @@ addButton.addEventListener("click", (event) => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pagesAmount = document.getElementById("pagesAmount").value;
-    addBookToLibrary(addBook(title, author, pagesAmount));
+    const read = document.getElementById("read").checked;
+    const book = new Book(title, author, pagesAmount, read);
+    addBookToLibrary(book);
 
 
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
     document.getElementById("pagesAmount").value = "";
+
 })
 
 const closeButton = document.getElementById("close");
