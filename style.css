@@ -91,10 +91,10 @@ dialog.modal {
     background-color: #0056b3;
 }
 
-.close-button {
+#close {
     background-color: #dc3545;
 }
 
-.close-button:hover {
+#close:hover {
     background-color: #c82333;
 }
