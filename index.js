@@ -19,11 +19,6 @@ class Book {
 
 }
 
-
-// Book.prototype.toggleRead = function () {
-//     this.read = !this.read;
-// };
-
 const display = document.getElementById("display")
 
 
