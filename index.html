@@ -14,13 +14,20 @@
         <button id="add">Add book</button>
         <dialog class="modal">
             <label for="title">Title</label>
-            <input type="text" id="title">
+            <input type="text" id="title" name="title" required minlength="3">
+            <span class="error"></span>
+
             <label for="author">Author</label>
-            <input type="text" id="author">
+            <input type="text" id="author" name="author" required minlength="3">
+            <span class="error"></span>
+
             <label for="pagesAmount">Pages Amount</label>
-            <input type="number" id="pagesAmount">
+            <input type="number" id="pagesAmount" name="pagesAmount" required min="1">
+            <span class="error"></span>
+
             <label for="read">Read</label>
-            <input type="checkbox" id="read">
+            <input type="checkbox" id="read" name="read">
+
             <button id="addBook" type="submit">Add</button>
             <button id="close" class="close-button">Close modal</button>
         </dialog>
